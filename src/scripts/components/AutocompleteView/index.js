@@ -1,7 +1,3 @@
 import React from "react";
 
-export const AutocompleteView = () => {
-  console.log("auto");
-
-  return <>AutocompleteView</>;
-};
+export const AutocompleteView = () => <>Autocomplete View</>;

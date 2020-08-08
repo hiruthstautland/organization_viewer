@@ -1,0 +1,10 @@
+$primary-light: #ccc;
+.nav {
+  background: $primary-light;
+  &__list {
+    color: red;
+    &__item {
+      background: blue;
+    }
+  }
+}

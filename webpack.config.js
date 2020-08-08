@@ -1,9 +1,14 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// experimentalDecorators
+// @import '~bootstrap';
 
 const isDevelopment = process.env.NODE_ENV === "development";
-
 module.exports = {
+  // entry: "./src/index.js",
+  // output: { filename: .main.js },
+  target: "node",
+  mode: "development",
   module: {
     rules: [
       {
@@ -14,33 +19,21 @@ module.exports = {
         },
       },
       {
-        test: /\.s(a|c)ss$/,
+        test: /\.s[ac]ss$/i,
         exclude: /\.module.(s(a|c)ss)$/,
-        loader: [
+        // fallback to style-loader in dev
+        use: [
           isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
-          "css-loader",
+          { loader: "css-loader" },
           {
             loader: "sass-loader",
             options: {
-              sourceMap: isDevelopment,
+              // sourceMap: isDevelopment,
+              // implementation: require("node-sass"),
             },
           },
         ],
       },
-      //   {
-      //     test: /\s.(a|c)css$/,
-      //     exclude: /\.module.(s(a|c)ss)$/,
-      //     use: {
-      //         loader: isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
-      //         "css-loader",
-      //             {
-      //                 loader:'sass-loader',
-      //                 options: {
-      //                 sourceMap: isDevelopment
-      //             }
-      //             }
-      //         }
-      //   },
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
@@ -65,3 +58,5 @@ module.exports = {
     }),
   ],
 };
+
+console.log("isDevelopment", isDevelopment);

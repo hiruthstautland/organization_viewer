@@ -1,8 +1,52 @@
 $background-color: blue;
-.app {
+body {
+  margin: 0;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 16px;
+}
+#app {
   height: 100%;
   width: 100%;
-
   display: flex;
   flex-flow: column wrap;
+}
+.container {
+  padding: 1em;
+}
+// media query
+$layout-bp-mobile: 480px;
+$layout-bp-tablets: 768px;
+$layout-bp-laptops: 1024px;
+$layout-bp-desktop: 1200px;
+$layout-bp-tv: 1201px;
+//desktop
+//tv
+@media (min-width: $layout-bp-tv) {
+  .container {
+    padding: 3em;
+  }
+}
+@media (max-width: $layout-bp-desktop) {
+  .container {
+    padding: 2em;
+  }
+}
+//laptops
+@media (max-width: $layout-bp-laptops) {
+  .container {
+    padding: 1.6em;
+  }
+}
+//tablets
+@media (max-width: $layout-bp-tablets) {
+  .container {
+    min-width: 320px;
+    padding: 0.8em;
+  }
+}
+// mobile
+@media (max-width: $layout-bp-mobile) {
+  .container {
+    padding: 0.6em;
+  }
 }

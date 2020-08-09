@@ -1,13 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-// import ReactDOM from "react-dom";
 import "./style.scss";
-
+// import ReactDOM from "react-dom";
 import { AutocompleteView } from "./AutocompleteView";
 import { Navigation } from "./common/Navigation";
 import { LoginView } from "./common/LoginView";
-
-
+import { ViewLandingPage } from "./ViewLandingpage";
 
 // route with navbar
 const NavbarRoute = ({ exact, path, component: Component }) => (
@@ -24,19 +22,23 @@ const NavbarRoute = ({ exact, path, component: Component }) => (
 
 const App = () => {
   return (
-    <div className="app">
-      <BrowserRouter>
-        <Switch>
-          {/* <LoginView exact path="/" /> */}
-          <NavbarRoute
-            exact
-            path="/"
-            // path="/autocomplete"
-            component={AutocompleteView}
-          />
-        </Switch>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        {/* for working */}
+
+        <NavbarRoute exact path="/" component={AutocompleteView} />
+
+        {/*  */}
+        
+        {/* <LoginView exact path="/" /> */}
+        {/* <NavbarRoute
+          exact
+          path="/"
+          component={ViewLandingPage}
+        /> */}
+        {/* <NavbarRoute exact path="/autocomplete" component={AutocompleteView} /> */}
+      </Switch>
+    </BrowserRouter>
   );
 };
 

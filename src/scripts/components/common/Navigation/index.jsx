@@ -1,19 +1,23 @@
 import React from "react";
+import { HeartLogo } from "./../HeartLogo";
 import { Link } from "react-router-dom";
 import "./style.scss";
 
 export const Navigation = () => (
-  <div className="nav">
+  <nav className="nav">
+    <span className="nav__brand">
+      <HeartLogo />
+    </span>
     <ul className="nav__list">
       <li className="nav__item">
-        <Link to="/autocomplete">Autocomplete</Link>
+        <Link className="nav__link" to="/autocomplete">Autocomplete</Link>
       </li>
       <li className="nav__item">
-        <Link to="/button">Button</Link>
+        <Link className="nav__link" to="/button">Button</Link>
       </li>
       <li className="nav__item">
-        <Link to="/grid">Grid</Link>
+        <Link className="nav__link" to="/grid">Grid</Link>
       </li>
     </ul>
-  </div>
+  </nav>
 );

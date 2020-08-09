@@ -1,13 +1,34 @@
-$primary-light: #ccc;
+$nav-color-start: rgb(2, 60, 126);
+$nav-color-mid: rgb(204, 204, 255);
+$nav-color-end: rgb(255, 255, 50);
+$nav-bg: linear-gradient(
+  90deg,
+  $nav-color-start,
+  $nav-color-mid,
+  $nav-color-end
+);
 .nav {
-  background: $primary-light;
+  display: flex;
+  border-bottom: 1px;
+  align-items: center;
+  background: blue;
+  background: $nav-bg;
+
+  &__brand {
+    margin: 1em;
+  }
   &__list {
-    font-size: 12px;
+    margin: 0 1em;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 800;
+  }
+  &__item {
+    padding: 1em;
     display: inline;
-    list-style: none;
-    color: red;
-    &__item {
-      background: green;
-    }
+  }
+  &__link {
+    text-decoration: none;
+    color: black;
   }
 }

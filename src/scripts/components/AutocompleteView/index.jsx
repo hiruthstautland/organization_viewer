@@ -18,8 +18,10 @@ const suggestionsJSON = {
 
 export const AutocompleteView = () => {
   const inputRef = useRef();
+  const [inputStr, setInputStr] = useState(null);
   const [users, setUsers] = useState(null);
   const [suggestions, setSuggestions] = useState(null);
+  //   let inputStr;
 
   useEffect(() => {
     let usersData = suggestionsJSON.users;
@@ -28,21 +30,16 @@ export const AutocompleteView = () => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    let input = inputRef.current.value;
+    setInputStr(inputRef.current.value);
 
-    if (input.length >= 2) {
+    if (inputRef.current.value.length >= 2) {
       setSuggestions(
         users.filter(
           (user) =>
-            user["name"].substr(0, input.length).toLowerCase() ===
-            input.toLowerCase()
+            user["name"].substr(0, inputStr.length).toLowerCase() ===
+            inputStr.toLowerCase()
         )
       );
-      //     return `
-      //           user["name"].substr(0, input.length) +
-      //           ".." +
-      //           user["name"].substr(input.length)
-      //         `;
     }
   };
 
@@ -50,7 +47,9 @@ export const AutocompleteView = () => {
     <section className="container">
       Autocomplete View
       <InputForm handleChange={handleChange} inputRef={inputRef} />
-      {suggestions && <Suggestion suggestions={suggestions} />}
+      {suggestions && (
+        <Suggestion suggestions={suggestions} inputStr={inputStr} />
+      )}
     </section>
   );
 };

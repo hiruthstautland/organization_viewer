@@ -2,9 +2,12 @@ $primary-light: #ccc;
 .nav {
   background: $primary-light;
   &__list {
+    font-size: 12px;
+    display: inline;
+    list-style: none;
     color: red;
     &__item {
-      background: blue;
+      background: green;
     }
   }
 }

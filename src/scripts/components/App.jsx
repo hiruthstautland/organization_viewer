@@ -7,6 +7,8 @@ import { AutocompleteView } from "./AutocompleteView";
 import { Navigation } from "./common/Navigation";
 import { LoginView } from "./common/LoginView";
 
+
+
 // route with navbar
 const NavbarRoute = ({ exact, path, component: Component }) => (
   <Route
@@ -25,10 +27,11 @@ const App = () => {
     <div className="app">
       <BrowserRouter>
         <Switch>
-          <LoginView exact path="/" />
+          {/* <LoginView exact path="/" /> */}
           <NavbarRoute
             exact
-            path="/autocomplete"
+            path="/"
+            // path="/autocomplete"
             component={AutocompleteView}
           />
         </Switch>

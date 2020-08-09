@@ -5,14 +5,14 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const isDevelopment = process.env.NODE_ENV === "development";
 module.exports = {
-  // entry: "./src/index.js",
-  // output: { filename: .main.js },
-  target: "node",
+  // target: "node",
   mode: "development",
+  watch: true,
+  stats: "errors-only",
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx)?$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -28,8 +28,7 @@ module.exports = {
           {
             loader: "sass-loader",
             options: {
-              // sourceMap: isDevelopment,
-              // implementation: require("node-sass"),
+              sourceMap: isDevelopment,
             },
           },
         ],
@@ -57,6 +56,12 @@ module.exports = {
       chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css",
     }),
   ],
+  devServer: {
+    open: true,
+    watchOptions: {
+      poll: true,
+      aggregateTimeout: 1000,
+      ignored: "/node_modules/",
+    },
+  },
 };
-
-console.log("isDevelopment", isDevelopment);

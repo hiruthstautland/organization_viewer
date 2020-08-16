@@ -22,9 +22,6 @@ export const ViewButtons = () => (
         <a href="#" className="btn btn-4">
           <span>Hover</span>
         </a>
-        <a href="#" className="btn btn-5">
-          Hover
-        </a>
       </div>
       <p>
         Follow on

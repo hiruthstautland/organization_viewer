@@ -3,12 +3,6 @@ $red: rgba(213, 11, 24, 0.2);
 $dark-gray: rgba(122, 122, 122, 0.8);
 $gray: rgba(230, 230, 230, 0.8);
 
-.container__btns {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-
 .buttons {
   display: flex;
   flex-direction: column;
@@ -16,10 +10,10 @@ $gray: rgba(230, 230, 230, 0.8);
   justify-content: center;
   text-align: center;
   width: 100%;
+  background: $dark-gray;
 }
 
-.container {
-  background: $dark-gray;
+.container__btns {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -34,7 +28,7 @@ $gray: rgba(230, 230, 230, 0.8);
 }
 
 h1 {
-  color: $gray;
+  color: $dark-gray;
   font-size: 1.25em;
   font-weight: 900;
   margin: 0 0 2em;
@@ -54,7 +48,7 @@ h1 {
 }
 
 p {
-  // color: $gray;
+  color: $gray;
   font-size: 12px;
 
   @media (min-width: 600px) {
@@ -97,7 +91,8 @@ p {
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
-  width: 100%;
+  // width: 100%;
+  padding: 1em;
 
   //   @media(min-width: 400px) {
   //     display: inline-block;
@@ -131,7 +126,7 @@ p {
   font-weight: 100;
 
   svg {
-    height: 45px;
+    height: 100%;
     left: 0;
     position: absolute;
     top: 0;
@@ -156,19 +151,10 @@ p {
     stroke-width: 5;
     stroke-dasharray: 15, 310;
     stroke-dashoffset: 48;
-    transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: all 2.35s cubic-bezier(0.19, 1, 0.22, 1);
   }
-} //button -2
-//////////////////////////
-.btn-2 {
-  letter-spacing: 0;
 }
-
-.btn-2:hover,
-.btn-2:active {
-  letter-spacing: 5px;
-}
-
+//button -2
 .btn-2:after,
 .btn-2:before {
   backface-visibility: hidden;
@@ -187,17 +173,16 @@ p {
   backface-visibility: hidden;
   border-color: #fff;
   transition: width 350ms ease-in-out;
-  width: 70%;
+  width: 30%;
 }
 
 .btn-2:hover:before {
   bottom: auto;
   top: 0;
-  width: 70%;
+  width: 90%;
 }
 
 //button -3
-///////////////////////////
 .btn-3 {
   background: lighten($red, 3%);
   border: 1px solid darken($red, 4%);
@@ -218,7 +203,6 @@ p {
 }
 
 //button -4
-///////////////////////////
 .btn-4 {
   border: 0 solid;
   box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
@@ -236,4 +220,13 @@ p {
   outline-color: rgba(255, 255, 255, 0);
   outline-offset: 15px;
   text-shadow: 1px 1px 2px #427388;
+}
+
+//button -5
+.btn-5 {
+  letter-spacing: 0;
+}
+.btn-5:hover,
+.btn-5:active {
+  letter-spacing: 5px;
 }

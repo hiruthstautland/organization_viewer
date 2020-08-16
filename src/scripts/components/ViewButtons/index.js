@@ -2,10 +2,10 @@ import React from "react";
 import "./style";
 
 export const ViewButtons = () => (
-  <div className="container container__btns">
+  <div className="container ">
     <section className="buttons">
       <h1>Button Hover Effects</h1>
-      <div className="container">
+      <div className="container__btns">
         <a href="https://twitter.com/Dave_Conner" className="btn btn-1">
           <svg>
             <rect x="0" y="0" fill="none" width="100%" height="100%" />
@@ -22,13 +22,10 @@ export const ViewButtons = () => (
         <a href="#" className="btn btn-4">
           <span>Hover</span>
         </a>
-      </div>
-      <p>
-        Follow on
-        <a href="#" target="_blank">
-          Twitter
+        <a href="#" className="btn btn-5">
+          Hover
         </a>
-      </p>
+      </div>
     </section>
   </div>
 );

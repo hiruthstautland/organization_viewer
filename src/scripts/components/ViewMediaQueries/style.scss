@@ -1,0 +1,122 @@
+//  Variables
+$base-color: rgb(242, 82, 82);
+$alt-color: rgb(99, 155, 161);
+$border-color: lighten($base-color, 10%);
+//  Mixins
+@mixin mq($media) {
+  @if $media == mq480 {
+    @media only screen and (min-width: 30em) {
+      @content;
+    }
+  } @else if $media == mq600 {
+    @media only screen and (min-width: 36em) {
+      @content;
+    }
+  } @else if $media == mq768 {
+    @media only screen and (min-width: 48em) {
+      @content;
+    }
+  } @else if $media == mq992 {
+    @media only screen and (min-width: 62em) {
+      @content;
+    }
+  } @else if $media == mq1382 {
+    @media only screen and (min-width: 86em) {
+      @content;
+    }
+  } @else if $media == mqHi {
+    @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+      only screen and (min--moz-device-pixel-ratio: 1.5),
+      only screen and (min-device-pixel-ratio: 1.5) {
+      @content;
+    }
+  }
+}
+
+.mq1 {
+  background: $alt-color;
+  font-style: italic;
+  @include mq("mq480") {
+    background: none;
+    font-style: normal;
+  }
+}
+
+.mq2 {
+  @include mq("mq480") {
+    background: $alt-color;
+    font-style: italic;
+  }
+  @include mq("mq600") {
+    background: none;
+    font-style: normal;
+  }
+}
+
+.mq3 {
+  @include mq("mq600") {
+    background: $alt-color;
+    font-style: italic;
+  }
+  @include mq("mq768") {
+    background: none;
+    font-style: normal;
+  }
+}
+
+.mq4 {
+  @include mq("mq768") {
+    background: $alt-color;
+    font-style: italic;
+  }
+  @include mq("mq992") {
+    background: none;
+    font-style: normal;
+  }
+}
+
+.mq4 {
+  @include mq("mq992") {
+    background: $alt-color;
+    font-style: italic;
+  }
+  @include mq("mq1382") {
+    background: none;
+    font-style: normal;
+  }
+}
+
+.mq5 {
+  @include mq("mq1382") {
+    background: $alt-color;
+    font-style: italic;
+  }
+}
+
+.mq6 {
+  @include mq("mqHi") {
+    background: $alt-color;
+    font-style: italic;
+  }
+}
+
+.app {
+  margin-top: 20px;
+  div {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 4px;
+    border: 1px solid $border-color;
+  }
+  p,
+  h1,
+  h2 {
+    text-align: center;
+  }
+  h1,
+  h2 {
+    font-size: 32px;
+    font-weight: 100;
+    margin: 0;
+  }
+}

@@ -10,13 +10,39 @@ export const Navigation = () => (
     </span>
     <ul className="nav__list">
       <li className="nav__item">
-        <Link className="nav__link" to="/autocomplete">Autocomplete</Link>
-      </li>
-      <li className="nav__item">
-        <Link className="nav__link" to="/button">Button</Link>
-      </li>
-      <li className="nav__item">
-        <Link className="nav__link" to="/grid">Grid</Link>
+        <span className="nav__link">Views</span>
+        <ul className="nav__list-drop">
+          <li className="nav__item-drop">
+            <Link className="nav__link" to="/view-autocomplete">
+              Autocomplete
+            </Link>
+          </li>
+          <li className="nav__item-drop">
+            <Link className="nav__link" to="/view-mediaqueries">
+              Media Queries
+            </Link>
+          </li>
+          <li className="nav__item-drop">
+            <Link className="nav__link" to="/view-buttons">
+              Buttons
+            </Link>
+          </li>
+          <li className="nav__item-drop">
+            <Link className="nav__link" to="/view-myroad">
+              My Road
+            </Link>
+          </li>
+          <li className="nav__item-drop">
+            <Link className="nav__link" to="/view-yourroad">
+              Your Road
+            </Link>
+          </li>
+          <li className="nav__item-drop">
+            <Link className="nav__link" to="/view-myradio">
+              My Radio
+            </Link>
+          </li>
+        </ul>
       </li>
     </ul>
   </nav>

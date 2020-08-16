@@ -1,11 +1,17 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import "./style.scss";
-// import ReactDOM from "react-dom";
-import { AutocompleteView } from "./AutocompleteView";
+import "./style";
+
 import { Navigation } from "./common/Navigation";
-import { LoginView } from "./common/LoginView";
-import { ViewLandingPage } from "./ViewLandingpage";
+import { ViewAutocomplete } from "./ViewAutocomplete";
+import { ViewMediaQueries } from "./ViewMediaQueries";
+import { ViewButtons } from "./ViewButtons";
+import { ViewMyRoad } from "./ViewMyRoad";
+import { ViewYourRoad } from "./ViewYourRoad";
+import { ViewMyRadio } from "./ViewMyRadio";
+
+// import { LoginView } from "./common/LoginView";
+// import { ViewLandingPage } from "./ViewLandingpage";
 
 // route with navbar
 const NavbarRoute = ({ exact, path, component: Component }) => (
@@ -14,7 +20,8 @@ const NavbarRoute = ({ exact, path, component: Component }) => (
     path={path}
     render={(props) => (
       <>
-        <Navigation /> <Component {...props} />
+        <Navigation />
+        <Component {...props} />
       </>
     )}
   />
@@ -25,18 +32,29 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         {/* for working */}
-
-        <NavbarRoute exact path="/" component={AutocompleteView} />
-
+        <NavbarRoute exact path="/" component={ViewMyRadio} />
         {/*  */}
-        
+
         {/* <LoginView exact path="/" /> */}
         {/* <NavbarRoute
           exact
           path="/"
           component={ViewLandingPage}
         /> */}
-        {/* <NavbarRoute exact path="/autocomplete" component={AutocompleteView} /> */}
+        <NavbarRoute
+          exact
+          path="/view-autocomplete"
+          component={ViewAutocomplete}
+        />
+        <NavbarRoute
+          exact
+          path="/view-mediaqueries"
+          component={ViewMediaQueries}
+        />
+        <NavbarRoute exact path="/view-buttons" component={ViewButtons} />
+        <NavbarRoute exact path="/view-myroad" component={ViewMyRoad} />
+        <NavbarRoute exact path="/view-yourroad" component={ViewYourRoad} />
+        <NavbarRoute exact path="/view-myradio" component={ViewMyRadio} />
       </Switch>
     </BrowserRouter>
   );

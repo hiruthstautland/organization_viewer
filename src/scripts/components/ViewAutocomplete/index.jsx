@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./style";
-import { InputForm } from "./../common/InputForm";
+import { InputForm } from "../common/InputForm";
 import { SuggestionList } from "../common/SuggestionsList";
 
 // mock data from api
@@ -16,7 +16,7 @@ const suggestionsJSON = {
   ],
 };
 
-export const AutocompleteView = () => {
+export const ViewAutocomplete = () => {
   const inputRef = useRef();
   const [inputStr, setInputStr] = useState(null);
   const [users, setUsers] = useState(null);

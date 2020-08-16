@@ -32,7 +32,7 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         {/* for working */}
-        <NavbarRoute exact path="/" component={ViewMyRadio} />
+        <NavbarRoute exact path="/" component={ViewButtons} />
         {/*  */}
 
         {/* <LoginView exact path="/" /> */}

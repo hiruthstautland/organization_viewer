@@ -1,13 +1,23 @@
 .heart {
   position: relative;
-  background-color: yellow;
+  background: rgb(63, 94, 251);
+  background: linear-gradient(
+    90deg,
+    rgba(213, 11, 24, 1) 0%,
+    rgba(63, 94, 251, 1) 100%
+  );
   height: 30px;
   width: 30px;
   transform: rotate(-45deg);
   animation: beat 1s infinite;
 }
 .heart:after {
-  background-color: yellow;
+  background: rgb(63, 94, 251);
+  background: linear-gradient(
+    90deg,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(213, 11, 24, 1) 100%
+  );
   content: "";
   border-radius: 50%;
   position: absolute;
@@ -17,7 +27,12 @@
   left: 15px;
 }
 .heart:before {
-  background-color: yellow;
+  background: rgb(63, 94, 251);
+  background: linear-gradient(
+    90deg,
+    rgba(213, 11, 24, 1) 0%,
+    rgba(63, 94, 251, 1) 100%
+  );
   content: "";
   border-radius: 50%;
   position: absolute;
@@ -33,5 +48,11 @@
   }
   50% {
     transform: scale(0.9) rotate(-45deg);
+    background: rgb(63, 94, 251);
+    background: linear-gradient(
+      90deg,
+      rgba(213, 11, 24, 1) 0%,
+      rgba(63, 94, 251, 1) 100%
+    );
   }
 }

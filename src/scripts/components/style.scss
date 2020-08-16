@@ -13,14 +13,14 @@ body {
 .container {
   padding: 1em;
 }
+
 // media query
 $layout-bp-mobile: 480px;
 $layout-bp-tablets: 768px;
 $layout-bp-laptops: 1024px;
 $layout-bp-desktop: 1200px;
 $layout-bp-tv: 1201px;
-//desktop
-//tv
+
 @media (min-width: $layout-bp-tv) {
   .container {
     padding: 3em;
@@ -40,13 +40,13 @@ $layout-bp-tv: 1201px;
 //tablets
 @media (max-width: $layout-bp-tablets) {
   .container {
-    min-width: 320px;
     padding: 0.8em;
   }
 }
 // mobile
 @media (max-width: $layout-bp-mobile) {
   .container {
+    min-width: 320px;
     padding: 0.6em;
   }
 }

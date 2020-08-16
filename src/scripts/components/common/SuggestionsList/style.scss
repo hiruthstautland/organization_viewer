@@ -1,5 +1,15 @@
+// color var
+$li-active: 0.8;
+
 .suggestions {
   margin: 0;
-  padding: 0 0 0 30px;
+  padding: 0;
   list-style: none;
+  &__item {
+    background-color: gray;
+    &-active {
+      background-color: gray;
+      opacity: $li-active;
+    }
+  }
 }

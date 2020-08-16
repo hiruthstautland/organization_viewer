@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./style";
 import { InputForm } from "./../common/InputForm";
-import { Suggestion } from "../common/SuggestionsList";
+import { SuggestionList } from "../common/SuggestionsList";
 
 // mock data from api
 const suggestionsJSON = {
@@ -21,18 +21,13 @@ export const AutocompleteView = () => {
   const [inputStr, setInputStr] = useState(null);
   const [users, setUsers] = useState(null);
   const [suggestions, setSuggestions] = useState(null);
-  //   let inputStr;
-
-  useEffect(() => {
-    let usersData = suggestionsJSON.users;
-    setUsers(usersData);
-  }, []);
+  const [activeLi, setActiveLi] = useState(null);
 
   const handleChange = (e) => {
     e.preventDefault();
+    setUsers(suggestionsJSON.users);
     setInputStr(inputRef.current.value);
-
-    if (inputRef.current.value.length >= 2) {
+    if (inputRef.current.value.length > 1) {
       setSuggestions(
         users.filter(
           (user) =>
@@ -43,12 +38,41 @@ export const AutocompleteView = () => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    let key = e.keyCode;
+
+    switch (key) {
+      case 40:
+        activeLi === null ? setActiveLi(0) : setActiveLi(activeLi + 1);
+        break;
+      case 38:
+        if (activeLi > suggestions.length) setActiveLi(activeLi - 1);
+        break;
+      case 13:
+        setActiveLi(activeLi + 1);
+        break;
+
+      default:
+        break;
+    }
+  };
+
   return (
-    <section className="container">
+    <section className="container autocomplete">
       Autocomplete View
-      <InputForm handleChange={handleChange} inputRef={inputRef} />
+      <InputForm
+        handleChange={handleChange}
+        handleKeyDown={handleKeyDown}
+        inputRef={inputRef}
+        className="autocomplete__input"
+      />
       {suggestions && (
-        <Suggestion suggestions={suggestions} inputStr={inputStr} />
+        <SuggestionList
+          suggestions={suggestions}
+          inputStr={inputStr}
+          activeLi={activeLi}
+          customClass="autocomplete__suggestions"
+        />
       )}
     </section>
   );

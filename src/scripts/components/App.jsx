@@ -13,7 +13,7 @@ const App = () => {
   // console.log("loading", isLoading);
   // console.log("user", user);
   return (
-    <div className="app container">
+    <div className="app">
       {/* {!isAuthenticated && <ViewLogin />}
       {isAuthenticated && user && <ViewLandingPage />} */}
       <ViewLandingPage />

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ExcelRenderer } from "react-excel-renderer";
-// import { ExcelRenderer, OutTable } from "react-excel-renderer";
 import { getOrganizationInfo } from "../../../utils/getOrganization";
 import { ErrorCard } from "../ErrorCard";
 import "./style";
@@ -27,15 +26,16 @@ export const ExcelTable = () => {
     });
   };
   return (
-    <div>
-      <h1>Last opp excel fil</h1>
-      <input
-        name="input-excel-sheet"
-        type="file"
-        className="btn"
-        onChange={changeHandler}
-        style={{ padding: "10px", border: "1px solid black" }}
-      />
+    <section className="container__main">
+      <label>
+        <h3>Last opp excel fil</h3>
+        <input
+          name="input-excel-sheet"
+          type="file"
+          className="btn"
+          onChange={changeHandler}
+        />
+      </label>
       {appError ? (
         <ErrorCard error={appError} />
       ) : (
@@ -49,33 +49,30 @@ export const ExcelTable = () => {
           )}
         </>
       )}
-    </div>
+    </section>
   );
 };
 
-export const OutTable = (data, tableClassName) => {
-  console.log("orgInfo out", data);
-  return (
-    <table className="outtable">
-      <tbody>
-        <tr className="outtable__row-headers">
-          <th>Nr.</th>
-          <th>Organisasjonsnummer</th>
-          <th>selskapsnavn</th>
-          <th>kommune</th>
-          <th>hjemmeside</th>
-          <th>næringskode</th>
-          <th>antall ansatte</th>
+export const OutTable = (data) => (
+  <table className="outtable">
+    <tbody>
+      <tr className="outtable__row-headers">
+        <th>Nr.</th>
+        <th>Organisasjonsnummer</th>
+        <th>selskapsnavn</th>
+        <th>kommune</th>
+        <th>hjemmeside</th>
+        <th>næringskode</th>
+        <th>antall ansatte</th>
+      </tr>
+      {data.data.map((r, i) => (
+        <tr className="outtable__row" key={i}>
+          <td key={i}>{i + 1}</td>
+          {r.map((c) => (
+            <td key={c.key}>{c}</td>
+          ))}
         </tr>
-        {data.data.map((r, i) => (
-          <tr className="outtable__row" key={i}>
-            <td key={i}>{i + 1}</td>
-            {r.map((c) => (
-              <td key={c.key}>{c}</td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-};
+      ))}
+    </tbody>
+  </table>
+);

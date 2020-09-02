@@ -1,11 +1,8 @@
 import React from "react";
 import "./style";
 
-export const ErrorCard = (error) => {
-  const { errMsg, errValidation } = error.error;
-  console.log("hello", error.error);
-  console.log("em", error.errMsg);
-  console.log("em", errValidation);
+export const ErrorCard = ({ error }) => {
+  const { errMsg, errValidation } = error;
   return (
     <section className="error__card">
       <strong className="error__title">Oi, rusk i pipa!</strong>

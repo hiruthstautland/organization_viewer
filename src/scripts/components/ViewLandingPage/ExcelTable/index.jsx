@@ -16,8 +16,8 @@ export const ExcelTable = ({ data }) => (
       {data.map((r, i) => (
         <tr className="outtable__row" key={i}>
           <td key={i}>{i + 1}</td>
-          {r.map((c) => (
-            <td key={c.key}>{c}</td>
+          {r.map((c, j) => (
+            <td key={j + c}>{c ? c : "Ikke registrert"}</td>
           ))}
         </tr>
       ))}

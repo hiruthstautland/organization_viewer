@@ -1,5 +1,5 @@
 const BRREG_API = "https://data.brreg.no/enhetsregisteret/api/enheter";
-
+const developer_API = ""
 export async function getOrganizationInfo(orgNrArr, getObj) {
   let orgArr = await Promise.all(
     orgNrArr.map(async (orgNr) => await getResp(orgNr, getObj))
@@ -42,7 +42,7 @@ function customArray(data) {
     data.forretningsadresse.kommune || false,
     data.hjemmeside || false,
     data.naeringskode1 ? data.naeringskode1.beskrivelse : false,
-    data.antallAnsatte,
+    data.antallAnsatte === 0 ? "0" : data.antallAnsatte,
   ];
 }
 

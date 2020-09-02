@@ -1,9 +1,18 @@
+const webpack = require("webpack");
+const dotenv = require("dotenv");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// experimentalDecorators
-// @import '~bootstrap';
 
 const isDevelopment = process.env.NODE_ENV === "development";
+// call dotenv and it will return an Object with a parsed key
+const env = dotenv.config().parsed;
+
+// reduce it to a nice object, the same as before
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
+
 module.exports = {
   target: "node",
   mode: "development",
@@ -55,6 +64,7 @@ module.exports = {
       filename: isDevelopment ? "[name].css" : "[name].[hash].css",
       chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css",
     }),
+    new webpack.DefinePlugin(envKeys),
   ],
   devServer: {
     open: true,

@@ -9,7 +9,6 @@ import { ErrorCard } from "./ErrorCard";
 
 export const ViewLandingPage = () => {
   const [orgInfo, setOrgInfo] = useState(null);
-  const [orgObj, setOrgObj] = useState(null);
   const [appError, setAppError] = useState(null);
   const [rows, setRows] = useState(null);
 
@@ -21,9 +20,6 @@ export const ViewLandingPage = () => {
       } else {
         let orgArr = await getOrganizationInfo(resp.rows);
         setRows(resp.rows);
-        //TODO: remove next line, just for test
-        // let orgObj = await getOrganizationInfo([12333]);
-        
         let { errMsg, errValidation } = orgArr[0];
         if (errMsg) {
           setAppError({ errMsg, errValidation });
@@ -37,7 +33,7 @@ export const ViewLandingPage = () => {
     <main className="container">
       <div className="container__btn">
         <LogOut />
-        <ExportCSV data={orgObj} rows={rows} />
+        <ExportCSV rows={rows} />
       </div>
       <h3>Last opp excel fil</h3>
       <ExcelFileInput changeHandler={changeHandler} />

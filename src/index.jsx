@@ -2,12 +2,20 @@ import React from "react";
 import { render } from "react-dom";
 import App from "./scripts/components/App";
 import { Auth0Provider } from "@auth0/auth0-react";
+import * as Sentry from "@sentry/react";
+import { Integrations } from "@sentry/tracing";
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  integrations: [new Integrations.BrowserTracing()],
+  tracesSampleRate: 1.0,
+});
 
 // TODO: use .env variables
 render(
   <Auth0Provider
-    domain="dev-tkc3o1a2.eu.auth0.com"
-    clientId="wuCDM1h4Hva6e3mOwbPHy2Iuu5UNAlyJ"
+    domain={process.env.PORT}
+    clientId={process.env.AUTH_CLIENT_ID}
     redirectUri={window.location.origin}
   >
     <App />

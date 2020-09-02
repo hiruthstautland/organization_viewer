@@ -36,7 +36,10 @@ npm install
 - add env variables for:
 
 - PORT=(SERVER_PORT)
-- NODE_ENV=(DEVELOPMENT)
+- NODE_ENV=(DEVELOPMENT || PRODUCTION)
+
+Auth is currently off!
+
 - AUTH_DOMAIN=(AUTH_DOMAIN)
 - AUTH_CLIENT_ID=(AUTH_CLIENT_ID)
 
@@ -53,7 +56,3 @@ this app uses parts of the react-excel-render npm pack from Ashish Deshpande - [
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-```
-
-```

@@ -1,5 +1,5 @@
 const BRREG_API = "https://data.brreg.no/enhetsregisteret/api/enheter";
-const developer_API = ""
+
 export async function getOrganizationInfo(orgNrArr, getObj) {
   let orgArr = await Promise.all(
     orgNrArr.map(async (orgNr) => await getResp(orgNr, getObj))
@@ -27,6 +27,7 @@ async function getResp(orgNr, getObj) {
       }
       return { errMsg, errValidation };
     }
+    // if (data.status == 400) throw data;
     return getObj ? customObject(data) : customArray(data);
   } catch (error) {
     console.log("Cant get the organization(s)", error);

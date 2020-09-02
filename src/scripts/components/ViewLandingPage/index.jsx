@@ -6,6 +6,7 @@ import { ExcelRenderer } from "react-excel-renderer";
 import { getOrganizationInfo } from "./../../utils/getOrganization";
 import { ExportCSV } from "./ExportCSV";
 import { ErrorCard } from "./ErrorCard";
+import * as Sentry from "@sentry/react";
 
 export const ViewLandingPage = () => {
   const [orgInfo, setOrgInfo] = useState(null);
@@ -40,7 +41,13 @@ export const ViewLandingPage = () => {
       {appError ? (
         <ErrorCard error={appError} />
       ) : (
-        <>{orgInfo && <ExcelTable data={orgInfo} />}</>
+        <>
+          {orgInfo && (
+            <Sentry.ErrorBoundary fallback={"An error has occured"}>
+              <ExcelTable data={orgInfo} />
+            </Sentry.ErrorBoundary>
+          )}
+        </>
       )}
     </main>
   );

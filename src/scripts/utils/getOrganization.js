@@ -27,16 +27,7 @@ async function getResp(orgNr, getObj) {
       }
       return { errMsg, errValidation };
     }
-
-    console.log("getObj", getObj);
-    console.log("data get orga", data);
-    return getObj ? data : customArray(data);
-
-    // if (getObj) {
-    //   return data;
-    // }
-    // let customObject = customArray(data);
-    // return customObject;
+    return getObj ? customObject(data) : customArray(data);
   } catch (error) {
     console.log("Cant get the organization(s)", error);
     return `Cant get the organization(s)`;
@@ -53,4 +44,15 @@ function customArray(data) {
     data.naeringskode1 ? data.naeringskode1.beskrivelse : false,
     data.antallAnsatte,
   ];
+}
+
+function customObject(data) {
+  return {
+    0: data.organisasjonsnummer || false,
+    1: data.navn || false,
+    2: data.forretningsadresse.kommune || false,
+    3: data.hjemmeside || false,
+    4: data.naeringskode1 ? data.naeringskode1.beskrivelse : false,
+    5: data.antallAnsatte,
+  };
 }

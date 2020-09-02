@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const isDevelopment = process.env.NODE_ENV === "development";
 module.exports = {
-  // target: "node",
+  target: "node",
   mode: "development",
   watch: true,
   stats: "errors-only",

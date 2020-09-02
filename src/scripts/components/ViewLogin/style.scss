@@ -1,0 +1,9 @@
+$primary-dark: #ddd;
+.loginview__container {
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $primary-dark;
+}

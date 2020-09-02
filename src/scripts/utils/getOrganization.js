@@ -1,13 +1,13 @@
 const BRREG_API = "https://data.brreg.no/enhetsregisteret/api/enheter";
 
-export async function getOrganizationInfo(orgNrObj) {
-  let orgObj = await Promise.all(
-    orgNrObj.map(async (orgNr) => await getResp(orgNr))
+export async function getOrganizationInfo(orgNrArr, getObj) {
+  let orgArr = await Promise.all(
+    orgNrArr.map(async (orgNr) => await getResp(orgNr, getObj))
   );
-  return orgObj;
+  return orgArr;
 }
 
-async function getResp(orgNr) {
+async function getResp(orgNr, getObj) {
   try {
     const response = await fetch(`${BRREG_API}/${orgNr}`, {
       method: "GET",
@@ -27,8 +27,16 @@ async function getResp(orgNr) {
       }
       return { errMsg, errValidation };
     }
-    let customObject = customArray(data);
-    return customObject;
+
+    console.log("getObj", getObj);
+    console.log("data get orga", data);
+    return getObj ? data : customArray(data);
+
+    // if (getObj) {
+    //   return data;
+    // }
+    // let customObject = customArray(data);
+    // return customObject;
   } catch (error) {
     console.log("Cant get the organization(s)", error);
     return `Cant get the organization(s)`;

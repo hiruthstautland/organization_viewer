@@ -1,4 +1,3 @@
-const APP_API = "/api";
 const BRREG_API = "https://data.brreg.no/enhetsregisteret/api/enheter";
 
 export async function getOrganizationInfo(orgNrObj) {
@@ -14,6 +13,7 @@ async function getResp(orgNr) {
       method: "GET",
     });
     let data = await response.json();
+
     if (data.status == 400) {
       let errMsg = data.feilmelding;
       let errValidation;
@@ -25,10 +25,9 @@ async function getResp(orgNr) {
         //TODO: remove cons.log and log in error lib, and send to UI
         console.log("Valideringsfeil:", errValidation);
       }
-      let errObj = { errMsg, errValidation };
-      return errObj;
+      return { errMsg, errValidation };
     }
-    let customObject = customizeObject(data);
+    let customObject = customArray(data);
     return customObject;
   } catch (error) {
     console.log("Cant get the organization(s)", error);
@@ -37,7 +36,7 @@ async function getResp(orgNr) {
 }
 
 //TODO: make a function that only returns the data to be displayed instead of dragging around the whole object(s)
-function customizeObject(data) {
+function customArray(data) {
   return [
     data.organisasjonsnummer || false,
     data.navn || false,

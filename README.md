@@ -27,3 +27,7 @@ Logged in users can upload a excel sheet with org. nr., and get the following in
 ```
 * this app uses parts of the react-excel-render npm pack from Ashish Deshpande - [link](https://github.com/ashishd751/react-excel-renderer)
 ```
+
+### Extra
+
+- For more info about exporting data to excel with react - https://blog.bitsrc.io/exporting-data-to-excel-with-react-6943d7775a92#:~:text=Here%20is%20a%20simple%20app,downloaded%20in%20an%20excel%20sheet.&text=You%20can%20import%20the%20project%20from%20here%20and%20run%20it%20directly.

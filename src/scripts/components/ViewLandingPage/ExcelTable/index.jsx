@@ -6,22 +6,15 @@ import { ErrorCard } from "../ErrorCard";
 import "./style";
 
 export const ExcelTable = () => {
-  const [rows, setRows] = useState([]);
-  const [cols, setCols] = useState([]);
-  const [orgInfo, setOrgInfo] = useState({});
+  const [orgInfo, setOrgInfo] = useState(null);
   const [appError, setAppError] = useState(null);
-  // const [rows, setRows] = useState({});
-  // const [cols, setCols] = useState({});
 
   const changeHandler = (e) => {
     let fileObj = e.target.files[0];
-    // pass the fileObj as parameter
     ExcelRenderer(fileObj, async (err, resp) => {
       if (err) {
         console.log(err);
       } else {
-        // setCols(resp.cols);
-        // setRows(resp.rows);
         let orgObj = await getOrganizationInfo(resp.rows);
         //TODO: remove next line, just for test
         // let orgObj = await getOrganizationInfo([12333]);
@@ -47,12 +40,10 @@ export const ExcelTable = () => {
         <ErrorCard error={appError} />
       ) : (
         <>
-          {orgInfo.length && (
+          {orgInfo && (
             <OutTable
               data={orgInfo}
-              // data={rows}
-              // columns={cols}
-              // tableClassName="ExcelTable2020"
+              // tableClassName="outtable"
               // tableHeaderRowClass="heading"
             />
           )}
@@ -62,12 +53,13 @@ export const ExcelTable = () => {
   );
 };
 
-export const OutTable = (data) => {
-  console.log("orgInfo out", typeof data);
+export const OutTable = (data, tableClassName) => {
+  console.log("orgInfo out", data);
   return (
     <table className="outtable">
       <tbody>
         <tr className="outtable__row-headers">
+          <th>Nr.</th>
           <th>Organisasjonsnummer</th>
           <th>selskapsnavn</th>
           <th>kommune</th>
@@ -75,21 +67,14 @@ export const OutTable = (data) => {
           <th>næringskode</th>
           <th>antall ansatte</th>
         </tr>
-        {data.map((r, i) => {
-          <tr key={i}>hei</tr>;
-        })}
-        {/* {props.data.map((r, i) => (
-            <tr key={i}>
-              {!props.withoutRowNum && (
-                <td key={i} className={props.tableHeaderRowClass}>
-                  {props.renderRowNum ? props.renderRowNum(r, i) : i}
-                </td>
-              )}
-              {props.columns.map((c) => (
-                <td key={c.key}>{r[c.key]}</td>
-              ))}
-            </tr>
-          ))} */}
+        {data.data.map((r, i) => (
+          <tr className="outtable__row" key={i}>
+            <td key={i}>{i + 1}</td>
+            {r.map((c) => (
+              <td key={c.key}>{c}</td>
+            ))}
+          </tr>
+        ))}
       </tbody>
     </table>
   );

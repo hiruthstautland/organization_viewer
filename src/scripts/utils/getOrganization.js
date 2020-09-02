@@ -28,9 +28,22 @@ async function getResp(orgNr) {
       let errObj = { errMsg, errValidation };
       return errObj;
     }
-    return data;
+    let customObject = customizeObject(data);
+    return customObject;
   } catch (error) {
     console.log("Cant get the organization(s)", error);
     return `Cant get the organization(s)`;
   }
+}
+
+//TODO: make a function that only returns the data to be displayed instead of dragging around the whole object(s)
+function customizeObject(data) {
+  return [
+    data.organisasjonsnummer || false,
+    data.navn || false,
+    data.forretningsadresse.kommune || false,
+    data.hjemmeside || false,
+    data.naeringskode1 ? data.naeringskode1.beskrivelse : false,
+    data.antallAnsatte,
+  ];
 }

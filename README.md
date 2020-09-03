@@ -30,21 +30,22 @@ npm run install
 
 - Add .env file to root
 
-### [Auth0](link)
+### [Auth0](https://auth0.com/)
 
 Create account and/or project.
-Follow instructions: [link]()
+Follow instructions: [link]
+(https://auth0.com/signup?&signUpData=%7B%22category%22%3A%22button%22%7D)
 Add the following from Auth0 to you .env file:
 
 - AUTH_DOMAIN="your_domain"
 - AUTH_CLIENT_ID="your_client_id"
 
-### [Sentry](link)
+### [Sentry](https://sentry.io/welcome/)
 
 Create account and/or create projects.
 One for logging errors on client side - React.js
 And on for error loggin on server side - Node.js
-For instructions: [link]()
+For instructions: [link](https://sentry.io/signup/)
 
 Add the following from Sentry to your .env file:
 
@@ -84,7 +85,7 @@ npm run nodemon
 - Start webpack
 
 ```
-npm run nodemon
+npm start
 ```
 
 ## React and Excel integration

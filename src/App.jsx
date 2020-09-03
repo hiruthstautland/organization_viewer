@@ -5,12 +5,11 @@ import "./style";
 import * as Sentry from "@sentry/react";
 import { ViewLogin } from "./ViewLogin";
 import { ViewLandingPage } from "./ViewLandingPage";
+import { ContentLoader } from "./ContentLoader";
 
 const App = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-
-  console.log("isAuthenticated", isAuthenticated);
-  console.log("loading", isLoading);
+  if (isLoading) <ContentLoader />;
   return (
     <Sentry.ErrorBoundary fallback={"An error has occured"}>
       <div className="app">

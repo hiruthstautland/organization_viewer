@@ -10,13 +10,12 @@ import * as Sentry from "@sentry/react";
 
 export const ViewLandingPage = () => {
   const [orgInfo, setOrgInfo] = useState(null);
-  const [tableHeadings, setTableHeadings] = useState(null);
   const [appError, setAppError] = useState(null);
   const [organizationIds, setOrganizationIds] = useState(null);
 
   useEffect(() => {
-    let data = localStorage.getItem("excelData");
-    if (data) setOrgInfo(data);
+    let excelData = localStorage.getItem("excelData");
+    if (excelData) setOrgInfo(excelData);
   }, [orgInfo]);
 
   const onExelFileChanged = (e) => {
@@ -37,15 +36,10 @@ export const ViewLandingPage = () => {
         setOrgInfo(tableObj);
         console.log(tableObj);
         //TODO: set table headings based on keys
-        // getTableHeadings(tableObj);
       }
     });
     localStorage.setItem("excelData", JSON.stringify(orgInfo));
   };
-
-  // const getTableHeadings = (orgInfo) => {
-  // setTableHeadings(Object.keys(orgInfo));
-  // };
 
   let tableheadings = [
     "Nr",
@@ -56,7 +50,7 @@ export const ViewLandingPage = () => {
     "Næringskode",
     "Antall ansatte",
   ];
-  
+
   return (
     <main className="container">
       <div className="container__btn">

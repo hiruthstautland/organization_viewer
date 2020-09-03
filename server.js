@@ -19,8 +19,6 @@ app.use("/api", async (req, res, next) => {
   const orgArr = req.body;
   try {
     let orgInfo = await getOrganization(orgArr);
-    // send missing info to sentry
-    // let missingInfo = orgInfo.map((missing) => missing.missingInfo);
     res.status(200).send(orgInfo);
   } catch (error) {
     Sentry.captureException(error);

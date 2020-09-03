@@ -1,9 +1,9 @@
 const BRREG_API = process.env.BRREG_API;
 const fetch = require("node-fetch");
 
-async function getOrganization(orgNrArr, getObj) {
+async function getOrganization(orgNrArr) {
   let orgArr = await Promise.all(
-    orgNrArr.map(async (orgNr) => await getResp(orgNr, getObj))
+    orgNrArr.map(async (orgNr) => await getResp(orgNr))
   );
   return orgArr;
 }
@@ -29,7 +29,7 @@ async function getResp(orgNr, getObj) {
       return { errMsg, errValidation };
     }
     // if (data.status == 400) throw data;
-    return getObj ? customObject(data) : customArray(data);
+    return customObject(data);
   } catch (error) {
     console.log("Cant get the organization(s)", error);
     return `Cant get the organization(s)`;
@@ -37,7 +37,7 @@ async function getResp(orgNr, getObj) {
 }
 
 //TODO: make a function that only returns the data to be displayed instead of dragging around the whole object(s)
-function customArray(data) {
+function customObject(data) {
   return {
     organisasjonsnummer: data.organisasjonsnummer || false,
     navn: data.navn || false,
@@ -48,14 +48,14 @@ function customArray(data) {
   };
 }
 
-function customObject(data) {
-  return {
-    0: data.organisasjonsnummer || false,
-    1: data.navn || false,
-    2: data.forretningsadresse.kommune || false,
-    3: data.hjemmeside || false,
-    4: data.naeringskode1 ? data.naeringskode1.beskrivelse : false,
-    5: data.antallAnsatte,
-  };
-}
+// function customObject(data) {
+//   return {
+//     0: data.organisasjonsnummer || false,
+//     1: data.navn || false,
+//     2: data.forretningsadresse.kommune || false,
+//     3: data.hjemmeside || false,
+//     4: data.naeringskode1 ? data.naeringskode1.beskrivelse : false,
+//     5: data.antallAnsatte,
+//   };
+// }
 module.exports = getOrganization;

@@ -1,4 +1,4 @@
-const BRREG_API = "https://data.brreg.no/enhetsregisteret/api/enheter";
+const BRREG_API = process.env.BRREG_API;
 
 export async function getOrganizationInfo(orgNrArr, getObj) {
   let orgArr = await Promise.all(

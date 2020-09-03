@@ -14,7 +14,7 @@ Sentry.init({
 // TODO: use .env variables
 render(
   <Auth0Provider
-    domain={process.env.PORT}
+    domain={process.env.AUTH_DOMAIN}
     clientId={process.env.AUTH_CLIENT_ID}
     redirectUri={window.location.origin}
   >

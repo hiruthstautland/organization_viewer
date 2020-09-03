@@ -14,6 +14,11 @@ export const ViewLandingPage = () => {
   const [appError, setAppError] = useState(null);
   const [organizationIds, setOrganizationIds] = useState(null);
 
+  useEffect(() => {
+    let data = localStorage.getItem("excelData");
+    if (data) setOrgInfo(data);
+  }, [orgInfo]);
+
   const onExelFileChanged = (e) => {
     let fileObj = e.target.files[0];
     ExcelRenderer(fileObj, async (err, excelData) => {
@@ -30,10 +35,12 @@ export const ViewLandingPage = () => {
         // }
         let tableObj = orgArr.map((info) => info.customObj);
         setOrgInfo(tableObj);
+        console.log(tableObj);
         //TODO: set table headings based on keys
         // getTableHeadings(tableObj);
       }
     });
+    localStorage.setItem("excelData", JSON.stringify(orgInfo));
   };
 
   // const getTableHeadings = (orgInfo) => {

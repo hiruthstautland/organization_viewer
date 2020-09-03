@@ -1,14 +1,11 @@
 const BRREG_API = process.env.BRREG_API;
 const fetch = require("node-fetch");
 
-async function getOrganization(orgNrArr) {
-  let orgArr = await Promise.all(
-    orgNrArr.map(async (orgNr) => await getResp(orgNr))
-  );
-  return orgArr;
+function getOrganization(orgNrArr) {
+  return Promise.all(orgNrArr.map((orgNr) => getOrganizationById(orgNr)));
 }
 
-async function getResp(orgNr) {
+async function getOrganizationById(orgNr) {
   try {
     const response = await fetch(`${BRREG_API}/${orgNr}`, {
       method: "GET",

@@ -1,7 +1,7 @@
 import React from "react";
 import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
-import { getOrganizationInfo } from "./../../../../utils/getOrganization";
+import { getOrganizationInfo } from "./../../getOrganization";
 
 export const ExportCSV = ({ rows }) => {
   const fileType =

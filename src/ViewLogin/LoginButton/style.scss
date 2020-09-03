@@ -1,0 +1,15 @@
+@import "./../../variables.scss";
+
+.login__button {
+  margin: 1em;
+  border: 4px $primary solid;
+  padding: 1em;
+  box-shadow: 0.2px 0.3px 0.6px 0.3px $gray-light;
+  background-color: $dark-gray;
+  color: $gray-light;
+  font-size: 2em;
+  &:focus {
+    outline: none;
+    box-shadow: 0.3px 0.4px 0.8px 0.4px $dark-gray;
+  }
+}

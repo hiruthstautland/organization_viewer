@@ -1,6 +1,6 @@
 const BRREG_API = process.env.BRREG_API;
 
-export async function getOrganizationInfo(orgNrArr, getObj) {
+async function getOrganizationInfo(orgNrArr, getObj) {
   let orgArr = await Promise.all(
     orgNrArr.map(async (orgNr) => await getResp(orgNr, getObj))
   );

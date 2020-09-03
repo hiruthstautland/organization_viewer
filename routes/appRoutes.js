@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Sentry = require("@sentry/node");
-import getOrganizationInfo from "./../services/getOrganization"
+const { getOrganizationInfo } = require("./../services/getOrganization");
 // service function
 
 Sentry.init({
@@ -9,10 +9,13 @@ Sentry.init({
 });
 
 router.get("/:organizationnumber/:organizationobj", async (req, res, next) => {
-  let { organizationnumber, organizationobj} = req.params;
-  console.log("nr",organizationnumber, "obj",organizationobj)
+  let { organizationnumber, organizationobj } = req.params;
+  console.log("nr", organizationnumber, "obj", organizationobj);
   try {
-    let organizationInfo = await getOrganizationInfo(organizationnumber, organizationobj)
+    let organizationInfo = await getOrganizationInfo(
+      organizationnumber,
+      organizationobj
+    );
     res.status(200).send(organizationInfo);
   } catch (error) {
     Sentry.captureException(error);

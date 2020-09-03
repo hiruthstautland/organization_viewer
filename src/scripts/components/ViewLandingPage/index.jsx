@@ -3,7 +3,7 @@ import { LogOut } from "./LogOut";
 import { ExcelTable } from "./ExcelTable";
 import { ExcelFileInput } from "./ExcelFileInput";
 import { ExcelRenderer } from "react-excel-renderer";
-import { getOrganizationInfo } from "./../../utils/getOrganization";
+import { getOrganizationInfo } from "./../../../utils/getOrganization";
 import { ExportCSV } from "./ExportCSV";
 import { ErrorCard } from "./ErrorCard";
 import * as Sentry from "@sentry/react";

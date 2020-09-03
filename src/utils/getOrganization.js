@@ -1,12 +1,11 @@
-const API_URL_DEVELOPMENT = process.env.API_URL_DEVELOPMENT;
-const API_DEVELOPMENT = process.env.API_DEVELOPMENT;
+const API_URL_DEVELOPMENT = "/api";
 
 export async function getOrganizationInfo(orgNrArr, getObj) {
-  let organizationobj;
-  if (!getObj) organizationobj = "";
+  let orgObj;
+  if (!getObj) orgObj = "";
   try {
     const response = await fetch(
-      `${API_URL_DEVELOPMENT}/${API_DEVELOPMENT}/${orgNrArr}/${organizationobj}`,
+      `${API_URL_DEVELOPMENT}/${orgNrArr}/${orgObj}`,
       {
         method: "GET",
       }

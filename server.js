@@ -21,17 +21,14 @@ app.use("/api", async (req, res, next) => {
     let orgInfo = await getOrganization(orgArr);
     // send missing info to sentry
     // let missingInfo = orgInfo.map((missing) => missing.missingInfo);
-
     res.status(200).send(orgInfo);
-
-    next();
   } catch (error) {
     Sentry.captureException(error);
     res.status(400).send(`Couldn't get information: ${error}`);
   }
 });
 
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send(`Something needs fixing!`);
 });

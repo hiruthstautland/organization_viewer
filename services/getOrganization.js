@@ -1,7 +1,7 @@
 const BRREG_API = process.env.BRREG_API;
 const fetch = require("node-fetch");
 
-function getOrganization(orgNrArr) {
+async function getOrganization(orgNrArr) {
   return Promise.all(orgNrArr.map((orgNr) => getOrganizationById(orgNr)));
 }
 
@@ -15,12 +15,11 @@ async function getOrganizationById(orgNr) {
     if (data.status == 400) {
       let errMsg = data.feilmelding;
       let errValidation;
-      // log in error lib
       console.log("Feilmelding:", errMsg);
 
       if (data.valideringsfeil) {
         errValidation = data.valideringsfeil[0].feilmelding;
-        //TODO: remove cons.log and log in error lib, and send to UI
+
         console.log("Valideringsfeil:", errValidation);
       }
       throw new Error(errMsg, errValidation);
@@ -31,7 +30,6 @@ async function getOrganizationById(orgNr) {
   }
 }
 
-//TODO: make a function that only returns the data to be displayed instead of dragging around the whole object(s)
 function customObject(data) {
   let customObj = {
     organisasjonsnummer: data.organisasjonsnummer || false,

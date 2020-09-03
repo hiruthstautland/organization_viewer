@@ -11,14 +11,8 @@ export async function getOrganizationInfo(orgArr) {
     });
     const data = await response.json();
 
-    if (data.msg) {
-      console.log("getOrganizationInfo-error:", data.msg);
-      return false;
-    }
     return data;
   } catch (error) {
-    // logg
-    console.log(error);
-    return "Couldn't get data";
+    throw new Error("Error from Client", error);
   }
 }

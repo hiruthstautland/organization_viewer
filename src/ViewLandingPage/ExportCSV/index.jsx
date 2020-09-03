@@ -3,20 +3,20 @@ import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
 import { getOrganizationInfo } from "./../../getOrganization";
 
-export const ExportCSV = ({ rows }) => {
+export const ExportCSV = ({ organizationIds }) => {
   const fileType =
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
   const fileExtension = ".xlsx";
 
-  const clickHandler = async () => {
+  const exportToCSV = async () => {
     let d = new Date();
     let nowDate = d.toUTCString();
     let fileName = `Organisasjons oversikt datert: ${nowDate}`;
-    let csvDataArr = await getOrganizationInfo(rows);
-    exportToCSV(csvDataArr, fileName);
+    let csvDataArr = await getOrganizationInfo(organizationIds);
+    jsonToSheet(csvDataArr, fileName);
   };
 
-  const exportToCSV = (csvData, fileName) => {
+  const jsonToSheet = (csvData, fileName) => {
     const ws = XLSX.utils.json_to_sheet(csvData);
     const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
     const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
@@ -25,7 +25,7 @@ export const ExportCSV = ({ rows }) => {
   };
 
   return (
-    <button className="btn" onClick={() => clickHandler()}>
+    <button className="btn" onClick={() => exportToCSV()}>
       Export
     </button>
   );

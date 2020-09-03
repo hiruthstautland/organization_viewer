@@ -1,6 +1,7 @@
 const BRREG_API = process.env.BRREG_API;
+const fetch = require("node-fetch");
 
-async function getOrganizationInfo(orgNrArr, getObj) {
+async function getOrganization(orgNrArr, getObj) {
   let orgArr = await Promise.all(
     orgNrArr.map(async (orgNr) => await getResp(orgNr, getObj))
   );
@@ -57,3 +58,4 @@ function customObject(data) {
     5: data.antallAnsatte,
   };
 }
+module.exports = getOrganization;

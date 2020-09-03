@@ -1,7 +1,7 @@
 import React from "react";
 import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
-import { getOrganizationInfo } from "./../../../utils/getOrganization";
+import { getOrganizationInfo } from "./../../../../utils/getOrganization";
 
 export const ExportCSV = ({ rows }) => {
   const fileType =
@@ -9,11 +9,10 @@ export const ExportCSV = ({ rows }) => {
   const fileExtension = ".xlsx";
 
   const clickHandler = async () => {
-    let getObj = true;
     let d = new Date();
     let nowDate = d.toUTCString();
     let fileName = `Organisasjons oversikt datert: ${nowDate}`;
-    let orgObj = await getOrganizationInfo(rows, getObj);
+    let orgObj = await getOrganizationInfo(rows);
     exportToCSV(orgObj, fileName);
   };
 

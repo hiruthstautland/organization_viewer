@@ -1,24 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const Sentry = require("@sentry/node");
-const { getOrganizationInfo } = require("./../services/getOrganization");
+const getOrganization = require("./../services/getOrganization");
 // service function
 
-Sentry.init({
-  dsn: process.env.SENTRY_DSN,
-});
+// Sentry.init({
+//   dsn: process.env.SENTRY_DSN,
+// });
 
-router.get("/:organizationnumber/:organizationobj", async (req, res, next) => {
-  let { organizationnumber, organizationobj } = req.params;
-  console.log("nr", organizationnumber, "obj", organizationobj);
+router.post("/", async (req, res, next) => {
+  const orgArr = req.body;
   try {
-    let organizationInfo = await getOrganizationInfo(
-      organizationnumber,
-      organizationobj
-    );
+    let organizationInfo = await getOrganization(orgArr);
     res.status(200).send(organizationInfo);
   } catch (error) {
-    Sentry.captureException(error);
+    // Sentry.captureException(error);
     res.status(400).send(`Couldn't get information: ${error}`);
   }
 });

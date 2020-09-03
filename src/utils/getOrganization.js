@@ -1,16 +1,16 @@
-const API_URL_DEVELOPMENT = "/api";
+const API_URL_DEVELOPMENT = " http://localhost:3000/api";
 
-export async function getOrganizationInfo(orgNrArr, getObj) {
-  let orgObj;
-  if (!getObj) orgObj = "";
+export async function getOrganizationInfo(orgArr) {
   try {
-    const response = await fetch(
-      `${API_URL_DEVELOPMENT}/${orgNrArr}/${orgObj}`,
-      {
-        method: "GET",
-      }
-    );
+    const response = await fetch(`${API_URL_DEVELOPMENT}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orgArr),
+    });
     const data = await response.json();
+
     if (data.msg) {
       console.log("getOrganizationInfo-error:", data.msg);
       return false;

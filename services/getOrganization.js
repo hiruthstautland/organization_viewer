@@ -38,14 +38,14 @@ async function getResp(orgNr, getObj) {
 
 //TODO: make a function that only returns the data to be displayed instead of dragging around the whole object(s)
 function customArray(data) {
-  return [
-    data.organisasjonsnummer || false,
-    data.navn || false,
-    data.forretningsadresse.kommune || false,
-    data.hjemmeside || false,
-    data.naeringskode1 ? data.naeringskode1.beskrivelse : false,
-    data.antallAnsatte === 0 ? "0" : data.antallAnsatte,
-  ];
+  return {
+    organisasjonsnummer: data.organisasjonsnummer || false,
+    navn: data.navn || false,
+    kommune: data.forretningsadresse.kommune || false,
+    hjemmeside: data.hjemmeside || false,
+    kode: data.naeringskode1 ? data.naeringskode1.kode : false,
+    antallAnsatte: data.antallAnsatte === 0 ? "0" : data.antallAnsatte,
+  };
 }
 
 function customObject(data) {

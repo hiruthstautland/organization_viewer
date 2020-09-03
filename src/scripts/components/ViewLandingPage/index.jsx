@@ -39,7 +39,7 @@ export const ViewLandingPage = () => {
     "næringskode",
     "antall ansatte",
   ];
-
+  console.log(orgInfo);
   return (
     <main className="container">
       <div className="container__btn">

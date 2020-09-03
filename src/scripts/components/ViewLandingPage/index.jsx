@@ -20,7 +20,6 @@ export const ViewLandingPage = () => {
         console.log(err);
       } else {
         let orgArr = await getOrganizationInfo(resp.rows);
-        console.log(orgArr[0]);
         setRows(resp.rows);
 
         // let { errMsg, errValidation } = orgArr[0];
@@ -41,7 +40,6 @@ export const ViewLandingPage = () => {
     "næringskode",
     "antall ansatte",
   ];
-  console.log("maptp", orgInfo);
   return (
     <main className="container">
       <div className="container__btn">

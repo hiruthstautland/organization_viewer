@@ -14,10 +14,23 @@ async function getResp(orgNr) {
       method: "GET",
     });
     let data = await response.json();
+
+    if (data.status == 400) {
+      let errMsg = data.feilmelding;
+      let errValidation;
+      // log in error lib
+      console.log("Feilmelding:", errMsg);
+
+      if (data.valideringsfeil) {
+        errValidation = data.valideringsfeil[0].feilmelding;
+        //TODO: remove cons.log and log in error lib, and send to UI
+        console.log("Valideringsfeil:", errValidation);
+      }
+      throw new Error(errMsg, errValidation);
+    }
     return customObject(data);
   } catch (error) {
-    console.log("Cant get the organization(s)", error);
-    return `Cant get the organization(s)`;
+    return `Cant get the organisation!`;
   }
 }
 
@@ -33,8 +46,6 @@ function customObject(data) {
   };
 
   let missingInfo = checkObj(customObj);
-  console.log(missingInfo);
-  // return customObj;
   return { customObj, missingInfo };
 }
 
@@ -43,7 +54,7 @@ function checkObj(obj) {
   for (let [key, value] of Object.entries(obj)) {
     if (value === false) {
       missingInfo = {
-        missing: key,
+        missingField: key,
       };
     }
   }

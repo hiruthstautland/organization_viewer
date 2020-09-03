@@ -1,4 +1,4 @@
-const BRREG_API = process.env.BRREG_API;
+const API_URL_EXTERNAL_SERVER = process.env.API_URL_EXTERNAL_SERVER;
 const fetch = require("node-fetch");
 
 async function getOrganization(orgNrArr) {
@@ -8,7 +8,7 @@ async function getOrganization(orgNrArr) {
 
 async function getOrganizationById(orgNr) {
   try {
-    const response = await fetch(`${BRREG_API}/${orgNr}`, {
+    const response = await fetch(`${API_URL_EXTERNAL_SERVER}/${orgNr}`, {
       method: "GET",
     });
     let data = await response.json();

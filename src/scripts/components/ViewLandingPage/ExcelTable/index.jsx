@@ -13,7 +13,8 @@ export const ExcelTable = ({ data, tableheadings }) => (
         <tr className="table__row" key={i}>
           <td
             className="table__col"
-            key={r.organisasjonsnummer.slice(1) + i}
+            // key={r.organisasjonsnummer.slice(1) + i}
+            key={Date.now() + i}
           >
             {i + 1}
           </td>

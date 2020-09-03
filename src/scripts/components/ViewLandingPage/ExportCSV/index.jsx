@@ -3,7 +3,7 @@ import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
 import { getOrganizationInfo } from "./../../../../utils/getOrganization";
 
-export const ExportCSV = ({ rows, tableheadings }) => {
+export const ExportCSV = ({ rows }) => {
   const fileType =
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
   const fileExtension = ".xlsx";

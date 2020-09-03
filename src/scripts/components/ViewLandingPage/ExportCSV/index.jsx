@@ -12,8 +12,7 @@ export const ExportCSV = ({ rows, tableheadings }) => {
     let d = new Date();
     let nowDate = d.toUTCString();
     let fileName = `Organisasjons oversikt datert: ${nowDate}`;
-    let orgArr = await getOrganizationInfo(rows);
-    let csvDataArr = [tableheadings.slice(1), ...orgArr];
+    let csvDataArr = await getOrganizationInfo(rows);
     exportToCSV(csvDataArr, fileName);
   };
 

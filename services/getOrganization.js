@@ -2,6 +2,7 @@ const BRREG_API = process.env.BRREG_API;
 const fetch = require("node-fetch");
 
 async function getOrganization(orgNrArr) {
+  // TODO: return obj
   return Promise.all(orgNrArr.map((orgNr) => getOrganizationById(orgNr)));
 }
 

@@ -50,12 +50,13 @@ export const ViewLandingPage = () => {
   let tableheadings = [
     "Nr",
     "Organisasjonsnummer",
-    "selskapsnavn",
-    "kommune",
-    "hjemmeside",
-    "næringskode",
-    "antall ansatte",
+    "Selskapsnavn",
+    "Kommune",
+    "Hjemmeside",
+    "Næringskode",
+    "Antall ansatte",
   ];
+  
   return (
     <main className="container">
       <div className="container__btn">

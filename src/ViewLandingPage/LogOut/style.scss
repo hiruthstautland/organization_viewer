@@ -1,7 +1,4 @@
-//colors
-$primary: rgba(31, 43, 59, 0.781);
-$dark-gray: rgba(122, 122, 122, 0.8);
-$gray: rgba(230, 230, 230, 0.8);
+@import "./../../variables.scss";
 
 .logout {
   &__btn {

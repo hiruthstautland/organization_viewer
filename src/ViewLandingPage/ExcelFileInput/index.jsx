@@ -1,13 +1,13 @@
 import React from "react";
 
-export const ExcelFileInput = ({ changeHandler }) => {
+export const ExcelFileInput = ({ onExelFileChanged }) => {
   return (
     <label>
       <input
         name="input-excel-sheet"
         type="file"
         className="btn"
-        onChange={(e) => changeHandler(e)}
+        onChange={(e) => onExelFileChanged(e)}
       />
     </label>
   );

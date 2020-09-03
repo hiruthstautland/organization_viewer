@@ -1,6 +1,4 @@
-$error-color: rgb(200, 19, 19);
-$primpary-red: rgba(213, 11, 24, 0.2);
-
+@import "./../../variables.scss";
 .error {
   &__card {
     margin: 1rem 0;

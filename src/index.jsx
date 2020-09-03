@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import App from "./scripts/components/App";
+import App from "./App";
 import { Auth0Provider } from "@auth0/auth0-react";
 import * as Sentry from "@sentry/react";
 import { Integrations } from "@sentry/tracing";

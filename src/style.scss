@@ -1,7 +1,5 @@
-//colors
-$primary: rgba(31, 43, 59, 0.781);
-$dark-gray: rgba(122, 122, 122, 0.8);
-$gray: rgba(230, 230, 230, 0.8);
+@import "./variables.scss";
+
 body {
   margin: 0;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
@@ -47,13 +45,6 @@ body {
     transition: all 250ms linear;
   }
 }
-
-// media query
-$layout-bp-mobile: 480px;
-$layout-bp-tablets: 768px;
-$layout-bp-laptops: 1024px;
-$layout-bp-desktop: 1200px;
-$layout-bp-tv: 1201px;
 
 @media (min-width: $layout-bp-tv) {
   .container {

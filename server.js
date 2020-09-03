@@ -1,17 +1,34 @@
 require("dotenv").config();
 const app = require("express")();
 const port = process.env.PORT;
-const appRoutes = require("./routes/appRoutes");
+const Sentry = require("@sentry/node");
+const getOrganization = require("./services/getOrganization");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN_BACK,
+  tracesSampleRate: 1.0,
+});
 
 app.use(cors());
 
 app.use(bodyParser.json());
 
-app.use("/api", appRoutes);
+app.use("/api", async (req, res, next) => {
+  const orgArr = req.body;
+  try {
+    let orgInfo = await getOrganization(orgArr);
+    // send missing info to sentry
+    // let missingInfo = orgInfo.map((missing) => missing.missingInfo);
+    res.status(200).send(orgInfo);
+  } catch (error) {
+    Sentry.captureException(error);
+    res.status(400).send(`Couldn't get information: ${error}`);
+  }
+});
 
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send(`Something needs fixing!`);
 });

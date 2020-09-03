@@ -3,7 +3,7 @@ import { LogOut } from "./LogOut";
 import { ExcelTable } from "./ExcelTable";
 import { ExcelFileInput } from "./ExcelFileInput";
 import { ExcelRenderer } from "react-excel-renderer";
-import { getOrganizationInfo } from "./../../utils/getOrganization";
+import { getOrganizationInfo } from "./../../../utils/getOrganization";
 import { ExportCSV } from "./ExportCSV";
 import { ErrorCard } from "./ErrorCard";
 import * as Sentry from "@sentry/react";
@@ -30,11 +30,21 @@ export const ViewLandingPage = () => {
     });
   };
 
+  let tableheadings = [
+    "Nr",
+    "Organisasjonsnummer",
+    "selskapsnavn",
+    "kommune",
+    "hjemmeside",
+    "næringskode",
+    "antall ansatte",
+  ];
+
   return (
     <main className="container">
       <div className="container__btn">
         <LogOut />
-        <ExportCSV rows={rows} />
+        <ExportCSV rows={rows} tableheadings={tableheadings} />
       </div>
       <h3>Last opp excel fil</h3>
       <ExcelFileInput changeHandler={changeHandler} />
@@ -44,7 +54,7 @@ export const ViewLandingPage = () => {
         <>
           {orgInfo && (
             <Sentry.ErrorBoundary fallback={"An error has occured"}>
-              <ExcelTable data={orgInfo} />
+              <ExcelTable data={orgInfo} tableheadings={tableheadings} />
             </Sentry.ErrorBoundary>
           )}
         </>

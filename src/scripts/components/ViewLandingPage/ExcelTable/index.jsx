@@ -1,17 +1,13 @@
 import React from "react";
 import "./style";
 
-export const ExcelTable = ({ data }) => (
+export const ExcelTable = ({ data, tableheadings }) => (
   <table className="outtable">
     <tbody>
       <tr className="outtable__row-headers">
-        <th>Nr.</th>
-        <th>Organisasjonsnummer</th>
-        <th>selskapsnavn</th>
-        <th>kommune</th>
-        <th>hjemmeside</th>
-        <th>næringskode</th>
-        <th>antall ansatte</th>
+        {tableheadings.map((heading, i) => (
+          <th key={i}>{heading}</th>
+        ))}
       </tr>
       {data.map((r, i) => (
         <tr className="outtable__row" key={i}>

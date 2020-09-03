@@ -1,14 +1,14 @@
 const BRREG_API = process.env.BRREG_API;
 const fetch = require("node-fetch");
 
-async function getOrganization(orgNrArr, getObj) {
+async function getOrganization(orgNrArr) {
   let orgArr = await Promise.all(
-    orgNrArr.map(async (orgNr) => await getResp(orgNr, getObj))
+    orgNrArr.map(async (orgNr) => await getResp(orgNr))
   );
   return orgArr;
 }
 
-async function getResp(orgNr, getObj) {
+async function getResp(orgNr) {
   try {
     const response = await fetch(`${BRREG_API}/${orgNr}`, {
       method: "GET",
@@ -26,36 +26,41 @@ async function getResp(orgNr, getObj) {
         //TODO: remove cons.log and log in error lib, and send to UI
         console.log("Valideringsfeil:", errValidation);
       }
-      return { errMsg, errValidation };
+      throw new Error(errMsg, errValidation);
     }
-    // if (data.status == 400) throw data;
-    return getObj ? customObject(data) : customArray(data);
+    return customObject(data);
   } catch (error) {
-    console.log("Cant get the organization(s)", error);
-    return `Cant get the organization(s)`;
+    return `Cant get the organisation!`;
   }
 }
 
 //TODO: make a function that only returns the data to be displayed instead of dragging around the whole object(s)
-function customArray(data) {
-  return [
-    data.organisasjonsnummer || false,
-    data.navn || false,
-    data.forretningsadresse.kommune || false,
-    data.hjemmeside || false,
-    data.naeringskode1 ? data.naeringskode1.beskrivelse : false,
-    data.antallAnsatte === 0 ? "0" : data.antallAnsatte,
-  ];
+function customObject(data) {
+  let customObj = {
+    organisasjonsnummer: data.organisasjonsnummer || false,
+    navn: data.navn || false,
+    kommune: data.forretningsadresse.kommune || false,
+    hjemmeside: data.hjemmeside || false,
+    kode: data.naeringskode1 ? data.naeringskode1.kode : false,
+    antallAnsatte: data.antallAnsatte === 0 ? "0" : data.antallAnsatte,
+  };
+
+  let missingInfo = checkObj(customObj);
+  return { customObj, missingInfo };
 }
 
-function customObject(data) {
-  return {
-    0: data.organisasjonsnummer || false,
-    1: data.navn || false,
-    2: data.forretningsadresse.kommune || false,
-    3: data.hjemmeside || false,
-    4: data.naeringskode1 ? data.naeringskode1.beskrivelse : false,
-    5: data.antallAnsatte,
-  };
+function checkObj(obj) {
+  let missingInfo;
+  for (let [key, value] of Object.entries(obj)) {
+    if (value === false) {
+      missingInfo = {
+        missingField: key,
+      };
+    }
+  }
+  if (missingInfo) {
+    missingInfo.organisasjonsnummer = obj.organisasjonsnummer;
+    return missingInfo;
+  }
 }
 module.exports = getOrganization;

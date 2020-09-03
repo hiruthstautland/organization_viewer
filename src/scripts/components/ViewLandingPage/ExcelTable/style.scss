@@ -1,15 +1,19 @@
-.outtable {
+.table {
   margin: 1em 0;
   width: 100%;
   margin-bottom: 1em;
   border-collapse: collapse;
+  border: 1px solid #ddd;
   &__row {
     padding: 0.5em;
-    border: 1px solid #ccc;
     &-headers {
       padding: 1em;
       font-weight: bold;
       background-color: #ddd;
     }
+  }
+  &__col {
+    border: 1px solid #ccc;
+    text-align: center;
   }
 }

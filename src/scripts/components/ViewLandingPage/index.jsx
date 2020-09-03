@@ -21,11 +21,12 @@ export const ViewLandingPage = () => {
       } else {
         let orgArr = await getOrganizationInfo(resp.rows);
         setRows(resp.rows);
-        let { errMsg, errValidation } = orgArr[0];
-        if (errMsg) {
-          setAppError({ errMsg, errValidation });
-        }
-        setOrgInfo(orgArr);
+
+        // let { errMsg, errValidation } = orgArr[0];
+        // if (errMsg) {
+        //   setAppError({ errMsg, errValidation });
+        // }
+        setOrgInfo(orgArr.map((info) => info.customObj));
       }
     });
   };
@@ -39,7 +40,6 @@ export const ViewLandingPage = () => {
     "næringskode",
     "antall ansatte",
   ];
-
   return (
     <main className="container">
       <div className="container__btn">

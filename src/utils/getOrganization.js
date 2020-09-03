@@ -1,8 +1,8 @@
-const API_URL_DEVELOPMENT = " http://localhost:3000/api";
+const API_URL_DEV = process.env.API_URL_DEV;
 
 export async function getOrganizationInfo(orgArr) {
   try {
-    const response = await fetch(`${API_URL_DEVELOPMENT}`, {
+    const response = await fetch(`${API_URL_DEV}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

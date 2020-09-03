@@ -11,6 +11,11 @@ app.use(bodyParser.json());
 
 app.use("/api", appRoutes);
 
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send(`Something needs fixing!`);
+});
+
 app.listen(port, () => {
   console.log(`Express server is running on port: ${port}`);
 });

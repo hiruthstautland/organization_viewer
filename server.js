@@ -15,7 +15,7 @@ app.use(cors());
 
 app.use(bodyParser.json());
 
-app.use("/api", async (req, res, next) => {
+app.post("/api", async (req, res, next) => {
   const orgArr = req.body;
   try {
     let orgInfo = await getOrganization(orgArr);

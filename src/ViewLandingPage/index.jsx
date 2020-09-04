@@ -16,7 +16,7 @@ export const ViewLandingPage = () => {
   useEffect(() => {
     let excelData = localStorage.getItem("excelData");
     if (excelData) setOrgInfo(excelData);
-  }, [orgInfo]);
+  }, []);
 
   const onExelFileChanged = (e) => {
     let fileObj = e.target.files[0];
@@ -34,11 +34,9 @@ export const ViewLandingPage = () => {
         // }
         let tableObj = orgArr.map((info) => info.customObj);
         setOrgInfo(tableObj);
-        console.log(tableObj);
-        //TODO: set table headings based on keys
+        localStorage.setItem("excelData", JSON.stringify(tableObj));
       }
     });
-    localStorage.setItem("excelData", JSON.stringify(orgInfo));
   };
 
   let tableheadings = [

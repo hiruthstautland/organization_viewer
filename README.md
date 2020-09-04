@@ -33,8 +33,7 @@ npm run install
 ### [Auth0](https://auth0.com/)
 
 Create account and/or project.
-Follow instructions: [link]
-(https://auth0.com/signup?&signUpData=%7B%22category%22%3A%22button%22%7D)
+Follow instructions: [link](https://auth0.com/signup?&signUpData=%7B%22category%22%3A%22button%22%7D)
 Add the following from Auth0 to you .env file:
 
 - AUTH_DOMAIN="your_domain"

@@ -23,11 +23,14 @@ async function getOrganizationById(orgNr) {
 
         // console.log("Valideringsfeil:", errValidation);
       }
-      throw new Error(errMsg, errValidation);
+      if (errValidation) {
+        throw new Error(errValidation);
+      }
+      throw new Error(errMsg);
     }
     return customObject(data);
   } catch (error) {
-    return `Cant get the organisation!`;
+    return `${error}`;
   }
 }
 

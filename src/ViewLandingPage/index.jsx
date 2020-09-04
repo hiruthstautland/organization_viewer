@@ -5,13 +5,12 @@ import { ExcelFileInput } from "./ExcelFileInput";
 import { ExcelRenderer } from "react-excel-renderer";
 import { getOrganizationInfo } from "./../getOrganization";
 import { ExportCSV } from "./ExportCSV";
-import { ErrorCard } from "./ErrorCard";
-import * as Sentry from "@sentry/react";
+import { ErrorCard } from "./../ErrorCard";
+import ErrorBoundary from "./../ErrorBoundary";
 
 export const ViewLandingPage = () => {
   const [tableData, setTableData] = useState(null);
-  const [appError, setAppError] = useState(null);
-  const [missingInfo, setMissingInfo] = useState(null);
+  const [missingData, setMissingData] = useState(null);
   const [organizationIds, setOrganizationIds] = useState(null);
 
   useEffect(() => {
@@ -22,6 +21,9 @@ export const ViewLandingPage = () => {
 
     return () => {
       setTableData(null);
+      if (missingData) {
+        throw new Error(missingData);
+      }
     };
   }, []);
 
@@ -41,17 +43,8 @@ export const ViewLandingPage = () => {
           }
         });
         setTableData(orgsObj.map((obj) => obj.customObj));
-        setMissingInfo(orgsObj.map((obj) => obj.missingInfo));
+        setMissingData(orgsObj.map((obj) => obj.missingInfo));
 
-        // console.log(tableData)
-
-        // TODO: show error UI
-        // let { errMsg, errValidation } = orgArr[0];
-        // if (errMsg) {
-        //   setAppError({ errMsg, errValidation });
-        // return
-        // }
-        // let tableObj = orgArr.;
         localStorage.setItem("excelData", JSON.stringify(tableData));
       }
     });
@@ -67,23 +60,21 @@ export const ViewLandingPage = () => {
     "Antall ansatte",
   ];
 
-  console.log("before render", tableData);
-
   return (
     <main className="container">
       <div className="container__btn">
         <LogOut />
-        <Sentry.ErrorBoundary fallback={"An error has occured"}>
+        <ErrorBoundary>
           <ExportCSV
             organizationIds={organizationIds}
             tableheadings={tableheadings}
           />
-        </Sentry.ErrorBoundary>
+        </ErrorBoundary>
       </div>
       <h3>Last opp excel fil</h3>
       <ExcelFileInput onExelFileChanged={onExelFileChanged} />
-      {appError ? (
-        <ErrorCard error={appError} />
+      {!tableData && organizationIds ? (
+        <ErrorCard error={"ERROR"} />
       ) : (
         <>
           {tableData && (

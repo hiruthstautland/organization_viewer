@@ -25,7 +25,7 @@ git clone https://github.com/hiruthstautland/organization_viewer.git
 
 cd organization_viewer
 
-npm run install
+npm install
 ```
 
 - Add .env file to root

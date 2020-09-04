@@ -42,6 +42,7 @@ export const ExcelTable = ({ data, tableheadings, missingText }) => (
     </tbody>
   </table>
 );
+
 ExcelTable.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   tableheadings: PropTypes.arrayOf(PropTypes.string).isRequired,

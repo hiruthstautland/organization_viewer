@@ -67,7 +67,7 @@ export const ViewLandingPage = () => {
         <LogOut />
         <ErrorBoundary>
           <ExportCSV
-            organizationIds={organizationIds}
+            tableData={tableData}
             tableheadings={tableheadings}
           />
         </ErrorBoundary>

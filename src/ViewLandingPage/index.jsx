@@ -9,18 +9,19 @@ import { ErrorCard } from "./ErrorCard";
 import * as Sentry from "@sentry/react";
 
 export const ViewLandingPage = () => {
-  const [orgInfo, setOrgInfo] = useState(null);
+  const [tableData, setTableData] = useState(null);
   const [appError, setAppError] = useState(null);
+  const [missingInfo, setMissingInfo] = useState(null);
   const [organizationIds, setOrganizationIds] = useState(null);
 
   useEffect(() => {
     let excelData = localStorage.getItem("excelData");
     if (!excelData === null) {
-      setOrgInfo(excelData);
+      setTableData(excelData);
     }
 
     return () => {
-      setOrgInfo(null);
+      setTableData(null);
     };
   }, []);
 
@@ -31,16 +32,27 @@ export const ViewLandingPage = () => {
         throw new Error(`Unable to render file: ${err}`);
       } else {
         let orgArr = await getOrganizationInfo(excelData.rows);
+
         setOrganizationIds(excelData.rows);
+
+        let orgsObj = orgArr.filter((el) => {
+          if (el.customObj) {
+            return el.customObj;
+          }
+        });
+        setTableData(orgsObj.map((obj) => obj.customObj));
+        setMissingInfo(orgsObj.map((obj) => obj.missingInfo));
+
+        // console.log(tableData)
+
         // TODO: show error UI
         // let { errMsg, errValidation } = orgArr[0];
         // if (errMsg) {
         //   setAppError({ errMsg, errValidation });
         // return
         // }
-        let tableObj = orgArr.map((info) => info.customObj);
-        setOrgInfo(tableObj);
-        localStorage.setItem("excelData", JSON.stringify(tableObj));
+        // let tableObj = orgArr.;
+        localStorage.setItem("excelData", JSON.stringify(tableData));
       }
     });
   };
@@ -54,7 +66,8 @@ export const ViewLandingPage = () => {
     "Næringskode",
     "Antall ansatte",
   ];
-  let missing = "Ikke opgitt!";
+
+  console.log("before render", tableData);
 
   return (
     <main className="container">
@@ -73,9 +86,9 @@ export const ViewLandingPage = () => {
         <ErrorCard error={appError} />
       ) : (
         <>
-          {orgInfo && (
+          {tableData && (
             <ExcelTable
-              data={orgInfo}
+              data={tableData}
               tableheadings={tableheadings}
               missingText="Ikke opgitt!"
             />

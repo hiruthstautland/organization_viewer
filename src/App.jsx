@@ -10,7 +10,6 @@ import { Spinner } from "./Spinner";
 const App = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
-  console.log(isLoading);
   if (isLoading) {
     return <Spinner />;
   }

@@ -5,13 +5,13 @@
   width: 100%;
   margin-bottom: 1em;
   border-collapse: collapse;
-  border: 1px solid $gray-light;
+  border: 2px solid $dark-gray;
   &__row {
     padding: 0.5em;
     &-headers {
       padding: 1em;
       font-weight: bold;
-      background-color: $gray;
+      background-color: lighten($primary, 20%);
     }
   }
   &__col {

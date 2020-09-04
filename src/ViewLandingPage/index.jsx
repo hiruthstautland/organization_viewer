@@ -15,7 +15,13 @@ export const ViewLandingPage = () => {
 
   useEffect(() => {
     let excelData = localStorage.getItem("excelData");
-    if (excelData) setOrgInfo(excelData);
+    if (!excelData === null) {
+      setOrgInfo(excelData);
+    }
+
+    return () => {
+      setOrgInfo(null);
+    };
   }, []);
 
   const onExelFileChanged = (e) => {

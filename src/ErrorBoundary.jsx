@@ -9,7 +9,7 @@ class ErrorBoundary extends React.Component {
     this.state = { error: null, eventId: null };
   }
 
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error) {
     this.setState({ error });
     Sentry.withScope((scope) => {
       scope.setTag("Custome-tag", "ErrorBoundary");

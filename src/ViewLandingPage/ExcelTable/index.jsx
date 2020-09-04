@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./style";
 
 export const ExcelTable = ({ data, tableheadings, missingText }) => (
@@ -41,3 +42,8 @@ export const ExcelTable = ({ data, tableheadings, missingText }) => (
     </tbody>
   </table>
 );
+ExcelTable.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  tableheadings: PropTypes.arrayOf(PropTypes.string).isRequired,
+  missingText: PropTypes.string,
+};

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
 import { getOrganizationInfo } from "./../../getOrganization";
@@ -29,4 +30,8 @@ export const ExportCSV = ({ organizationIds }) => {
       Export
     </button>
   );
+};
+
+ExportCSV.propTypes = {
+  organizationIds: PropTypes.arrayOf(PropTypes.array),
 };

@@ -13,7 +13,7 @@ const App = () => {
   if (isLoading) {
     return <Spinner />;
   }
-
+  return <ViewLandingPage />;
   return (
     <Sentry.ErrorBoundary fallback={"An error has occured"}>
       <div className="app">

@@ -54,6 +54,7 @@ export const ViewLandingPage = () => {
     "Næringskode",
     "Antall ansatte",
   ];
+  let missing = "Ikke opgitt!";
 
   return (
     <main className="container">
@@ -73,7 +74,11 @@ export const ViewLandingPage = () => {
       ) : (
         <>
           {orgInfo && (
-            <ExcelTable data={orgInfo} tableheadings={tableheadings} />
+            <ExcelTable
+              data={orgInfo}
+              tableheadings={tableheadings}
+              missingText="Ikke opgitt!"
+            />
           )}
         </>
       )}

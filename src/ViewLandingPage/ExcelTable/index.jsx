@@ -1,7 +1,7 @@
 import React from "react";
 import "./style";
 
-export const ExcelTable = ({ data, tableheadings }) => (
+export const ExcelTable = ({ data, tableheadings, missingText }) => (
   <table className="table">
     <tbody>
       <tr className="table__row-headers">
@@ -22,19 +22,19 @@ export const ExcelTable = ({ data, tableheadings }) => (
             {r.organisasjonsnummer}
           </td>
           <td className="table__col" key={r.navn}>
-            {r.navn}
+            {r.navn || missingText}
           </td>
           <td className="table__col" key={r.kommune}>
-            {r.kommune}
+            {r.kommune || missingText}
           </td>
           <td className="table__col" key={r.navn + i}>
-            {r.hjemmeside}
+            {r.hjemmeside || missingText}
           </td>
           <td className="table__col" key={r.kode}>
-            {r.kode}
+            {r.kode || missingText}
           </td>
           <td className="table__col" key={r.organisasjonsnummer + i}>
-            {r.antallAnsatte}
+            {r.antallAnsatte || missingText}
           </td>
         </tr>
       ))}

@@ -1,16 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import "./style";
 
 export const ErrorCard = ({ error }) => {
-  const { errMsg, errValidation } = error;
   return (
     <section className="error__card">
       <strong className="error__title">Oi, rusk i pipa!</strong>
       <div className="error__msg">
-        Feilmelding: <span className="error__msg-desc">{errMsg}</span>
+        Feilmelding: <span className="error__msg-desc">{error}</span>
         <br />
-        Valideringsfeil:{" "}
-        <span className="error__msg-desc">{errValidation}</span>
+        Valideringsfeil: <span className="error__msg-desc">{"No"}</span>
       </div>
       <br />
       <span>
@@ -19,4 +19,7 @@ export const ErrorCard = ({ error }) => {
       </span>
     </section>
   );
+};
+ErrorCard.propTypes = {
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };

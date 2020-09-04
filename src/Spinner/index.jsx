@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style";
 
-export const ContentLoader = () => {
+export const Spinner = () => {
   const [spinner, setSpinner] = useState(null);
 
   useEffect(() => {
@@ -14,8 +14,10 @@ export const ContentLoader = () => {
 
   return (
     spinner && (
-      <div className="spinner__wr">
-        <div className="spinner__magic"></div>
+      <div className="spinner">
+        <span className="spinner__inner-1"></span>
+        <span className="spinner__inner-2"></span>
+        <span className="spinner__inner-3"></span>
       </div>
     )
   );

@@ -16,18 +16,21 @@ async function getOrganizationById(orgNr) {
     if (data.status == 400) {
       let errMsg = data.feilmelding;
       let errValidation;
-      console.log("Feilmelding:", errMsg);
+      // console.log("Feilmelding:", errMsg);
 
       if (data.valideringsfeil) {
         errValidation = data.valideringsfeil[0].feilmelding;
 
-        console.log("Valideringsfeil:", errValidation);
+        // console.log("Valideringsfeil:", errValidation);
       }
-      throw new Error(errMsg, errValidation);
+      if (errValidation) {
+        throw new Error(errValidation);
+      }
+      throw new Error(errMsg);
     }
     return customObject(data);
   } catch (error) {
-    return `Cant get the organisation!`;
+    return `${error}`;
   }
 }
 

@@ -4,7 +4,7 @@ import * as FileSaver from "file-saver";
 import * as XLSX from "xlsx";
 import { getOrganizationInfo } from "./../../getOrganization";
 
-export const ExportCSV = ({ organizationIds }) => {
+export const ExportCSV = ({ tableData }) => {
   const fileType =
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
   const fileExtension = ".xlsx";
@@ -13,7 +13,7 @@ export const ExportCSV = ({ organizationIds }) => {
     let d = new Date();
     let nowDate = d.toUTCString();
     let fileName = `Organisasjons oversikt datert: ${nowDate}`;
-    let csvDataArr = await getOrganizationInfo(organizationIds);
+    let csvDataArr = tableData;
     jsonToSheet(csvDataArr, fileName);
   };
 

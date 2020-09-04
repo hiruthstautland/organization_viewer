@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export const ExcelFileInput = ({ onExelFileChanged }) => {
   return (
@@ -16,4 +16,4 @@ export const ExcelFileInput = ({ onExelFileChanged }) => {
 
 ExcelFileInput.propTypes = {
   onExelFileChanged: PropTypes.func,
-}
+};

@@ -13,7 +13,6 @@ const App = () => {
     return <Spinner />;
   }
 
-  return <ViewLandingPage />;
   return (
     <div className="app">
       {!isAuthenticated && <ViewLogin />}

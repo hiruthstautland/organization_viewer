@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { LogOut } from "./LogOut";
 import { ExcelTable } from "./ExcelTable";
 import { ExcelFileInput } from "./ExcelFileInput";
+import { FilterTable } from "./FilterTable";
 import { ExcelRenderer } from "react-excel-renderer";
 import { getOrganizationInfo } from "./../getOrganization";
 import { ExportCSV } from "./ExportCSV";
@@ -66,24 +67,24 @@ export const ViewLandingPage = () => {
       <div className="container__btn">
         <LogOut />
         <ErrorBoundary>
-          <ExportCSV
-            tableData={tableData}
-            tableheadings={tableheadings}
-          />
+          <ExportCSV tableData={tableData} tableheadings={tableheadings} />
         </ErrorBoundary>
       </div>
-      <h3>Last opp excel fil</h3>
+      <h2>LAST OPP EXCEL FIL</h2>
       <ExcelFileInput onExelFileChanged={onExelFileChanged} />
       {!tableData && organizationIds ? (
         <ErrorCard error={"ERROR"} />
       ) : (
         <>
           {tableData && (
-            <ExcelTable
-              data={tableData}
-              tableheadings={tableheadings}
-              missingText="Ikke opgitt!"
-            />
+            <>
+              <FilterTable />
+              <ExcelTable
+                data={tableData}
+                tableheadings={tableheadings}
+                missingText="Ikke opgitt!"
+              />
+            </>
           )}
         </>
       )}

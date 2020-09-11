@@ -12,11 +12,7 @@ export const ExcelTable = ({ data, tableheadings, missingText }) => (
       </tr>
       {data.map((r, i) => (
         <tr className="table__row" key={i}>
-          <td
-            className="table__col"
-            // key={r.organisasjonsnummer.slice(1) + i}
-            key={Date.now() + i}
-          >
+          <td className="table__col" key={r.organisasjonsnummer.slice(1) + i}>
             {i + 1}
           </td>
           <td className="table__col" key={r.organisasjonsnummer}>

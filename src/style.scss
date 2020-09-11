@@ -1,4 +1,5 @@
 @import "./variables.scss";
+@import url("https://fonts.googleapis.com/css?family=Lato");
 
 body {
   margin: 0;
@@ -9,6 +10,7 @@ body {
   height: 100%;
   display: flex;
   flex-flow: column;
+  font-family: Lato, Arial;
 }
 .container {
   display: flex;

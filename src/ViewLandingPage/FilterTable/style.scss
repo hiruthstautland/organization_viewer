@@ -1,30 +1,9 @@
-@import "compass/css3";
-
-@import "compass";
-@import url("https://fonts.googleapis.com/css?family=Lato");
-
 $background: #e74c3c;
 $select-color: #fff;
 $select-background: #c0392b;
 $select-width: 220px;
 $select-height: 40px;
 
-
-p {
-  margin-top: 200px;
-  a {
-    text-transform: uppercase;
-    text-decoration: none;
-    display: inline-block;
-    color: #fff;
-    padding: 5px 10px;
-    margin: 0 5px;
-    background-color: darken($select-background, 2);
-    &:hover {
-      background-color: darken($select-background, 5);
-    }
-  }
-}
 .select-hidden {
   display: none;
   visibility: hidden;

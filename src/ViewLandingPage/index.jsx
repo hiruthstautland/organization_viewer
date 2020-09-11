@@ -64,14 +64,10 @@ export const ViewLandingPage = () => {
 
   return (
     <main className="container">
-      <div className="container__btn">
-        <LogOut />
-        <ErrorBoundary>
-          <ExportCSV tableData={tableData} tableheadings={tableheadings} />
-        </ErrorBoundary>
-      </div>
-      <h2>LAST OPP EXCEL FIL</h2>
       <ExcelFileInput onExelFileChanged={onExelFileChanged} />
+      <span className="container__btn">
+        <LogOut />
+      </span>
       {!tableData && organizationIds ? (
         <ErrorCard error={"ERROR"} />
       ) : (
@@ -79,6 +75,12 @@ export const ViewLandingPage = () => {
           {tableData && (
             <>
               <FilterTable />
+              <ErrorBoundary>
+                <ExportCSV
+                  tableData={tableData}
+                  tableheadings={tableheadings}
+                />
+              </ErrorBoundary>
               <ExcelTable
                 data={tableData}
                 tableheadings={tableheadings}

@@ -10,7 +10,9 @@ export const FilterTable = ({ option1, option2 }) => {
       <h1> Filter Table </h1>
 
       <select id="mounth">
-        <option value="hide">-- Month --</option>
+        <option value="hide" className=".select-hidden">
+          -- Month --
+        </option>
         <option value="january" rel="icon-temperature">
           January
         </option>
@@ -40,6 +42,6 @@ export const FilterTable = ({ option1, option2 }) => {
   );
 };
 
-FilterList.propTypes = {
+FilterTable.propTypes = {
   onExelFileChanged: PropTypes.func,
 };

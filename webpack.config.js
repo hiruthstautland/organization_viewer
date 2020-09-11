@@ -15,6 +15,12 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 
 module.exports = {
   target: "node",
+  entry: ["./src/index.js"],
+  output: {
+    path: path.resolve(__dirname, "./dist"),
+    filename: "main.js",
+  },
+  watchContentBase: true,
   mode: "development",
   watch: true,
   stats: "errors-only",
